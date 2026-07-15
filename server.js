@@ -13,6 +13,11 @@ app.get('/good-evening', (req, res) => {
   res.type('text/plain').send('Good evening');
 });
 
-app.listen(port, hostname, () => {
+app.listen(port, hostname, (err) => {
+  if (err) {
+    console.error(err);
+    process.exitCode = 1;
+    return;
+  }
   console.log(`Server running at http://${hostname}:${port}/`);
 });
